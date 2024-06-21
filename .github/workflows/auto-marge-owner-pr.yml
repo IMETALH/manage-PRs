@@ -41,7 +41,7 @@ jobs:
 
     - uses: managedkaos/merge-pull-request@v1.2
       env:
-        GITHUB_TOKEN: ${{ secrets.ADMIN_USER_TOKEN}}
+        ADMIN_USER_TOKEN: ${{ secrets.ADMIN_USER_TOKEN}}
         
 
         
