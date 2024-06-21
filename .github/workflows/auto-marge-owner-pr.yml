@@ -15,11 +15,14 @@ jobs:
       with:
         python-version: 3.8
 
+         # flake8 --ignore=E501,E231 *.py tests/*.py
+         # pylint --errors-only --disable=C0301 --disable=C0326 *.py tests/*.py
     - name: flake8 and pylint
       run: |
         pip install -r requirements.txt 
-        flake8 --ignore=E501,E231 *.py tests/*.py 
-        pylint --errors-only --disable=C0301 --disable=C0326 *.py tests/*.py
+       
+        flake8 --ignore=E501,E231 *.py 
+        pylint --errors-only --disable=C0301 --disable=C0326 *.py
 
     - name: unit tests
       run: python -m unittest --verbose --failfast
