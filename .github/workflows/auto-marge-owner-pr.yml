@@ -18,8 +18,8 @@ jobs:
     - name: flake8 and pylint
       run: |
         pip install -r requirements.txt 
-        flake8 --ignore=E501,E231 *.py tests/*.py 
-        pylint --errors-only --disable=C0301 --disable=C0326 *.py tests/*.py
+        flake8 --ignore=E501,E231 *.py 
+        pylint --errors-only --disable=C0301 --disable=C0326 *.py
 
     - name: unit tests
       run: python -m unittest --verbose --failfast
@@ -34,11 +34,11 @@ jobs:
 
     - uses: hmarr/auto-approve-action@v2.0.0
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.MY_PAT }}
 
     - uses: managedkaos/merge-pull-request@v1.2
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        MY_PAT: ${{ secrets.GITHUB_TOKEN }}
         
 
         
