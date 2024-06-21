@@ -8,20 +8,19 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-       
     - uses: actions/checkout@v1
 
     - uses: actions/setup-python@v1
       with:
         python-version: 3.8
 
-    - name: flake8 and pylint
+    - name: Install dependencies and run linters
       run: |
         pip install -r requirements.txt 
-        flake8 --ignore=E501,E231 *.py 
-        pylint --errors-only --disable=C0301 --disable=C0326 *.py
+        flake8 --ignore=E501,E231 *.py tests/*.py 
+        pylint --errors-only --disable=C0301 --disable=C0326 *.py tests/*.py
 
-    - name: unit tests
+    - name: Run unit tests
       run: python -m unittest --verbose --failfast
 
   merge:
@@ -29,7 +28,6 @@ jobs:
     needs: [lint]
     runs-on: ubuntu-latest
     steps:
-
     - uses: actions/checkout@v1
 
     - uses: hmarr/auto-approve-action@v2.0.0
@@ -38,7 +36,7 @@ jobs:
 
     - uses: managedkaos/merge-pull-request@v1.2
       env:
-        MY_PAT: ${{ secrets.GITHUB_TOKEN }}
+        MY_PAT: ${{ secrets.MY_PAT }}
         
 
         
