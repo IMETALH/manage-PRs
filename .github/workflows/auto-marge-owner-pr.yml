@@ -15,7 +15,7 @@ jobs:
       with:
         python-version: 3.8
 
-         # flake8 --ignore=E501,E231 *.py tests/*.py
+         # 1 flake8 --ignore=E501,E231 *.py tests/*.py
          # pylint --errors-only --disable=C0301 --disable=C0326 *.py tests/*.py
     - name: flake8 and pylint
       run: |
